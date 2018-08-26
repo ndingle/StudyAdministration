@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using StudyAdministration.Models;
 
 namespace StudyAdministration
 {
@@ -33,6 +35,9 @@ namespace StudyAdministration
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<StudyAdministrationContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("StudyAdministrationContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
